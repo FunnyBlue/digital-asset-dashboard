@@ -4,6 +4,7 @@ import plotly.express as px
 from datetime import datetime
 
 
+
 def price_change(df, timeframe):
     df_pc = df
     fig = go.Figure(go.Bar(
@@ -188,37 +189,9 @@ def ethereum_gas_fee_in_usd(df):
         xaxis_title="Datetime",
         yaxis_title="USD",
     )
-    fig.show()
+    #fig.show()
     
     
-    #fig.show("png",config={'scrollZoom': True})
+    fig.show("png",config={'scrollZoom': True})
 
     fig.write_html(f'chart/Ethereum Average Gas Fee.html')
-
-
-# # (one) exchange total volume history + asset volume proportion
-# exchange_list = ['binance', 'gdax', 'kraken', 'okex']
-# for i in exchange_list:
-#     df_volume_history = pd.read_csv(f'vol_history_{i}.csv', index_col=0).sort_values('timestamp', ascending=True).reset_index(drop=True)
-#     df_volume_history['datetime'] = df_volume_history['timestamp'].apply(lambda x: datetime.fromtimestamp(x/1000))
-#     print(df_volume_history)
-#     fig = go.Figure(go.Scatter(x=df_volume_history['datetime'], y=df_volume_history['volumeUSD'], fill='tozeroy'))
-#
-#     fig.update_layout(
-#         title=f"{i[0].upper()}{i[1:]} Trade Volume History in 30 days",
-#         xaxis_title="Datetime",
-#         yaxis_title="Volume in USD",
-#     )
-#
-#     fig.show()
-#
-#     df_volume_proportion_exchange = pd.read_csv(f'asset_volume_proportion_history_{i}.csv',index_col=0)
-#     df_volume_proportion_exchange['datetime'] = df_volume_proportion_exchange['timestamp'].apply(lambda x: datetime.fromtimestamp(x/1000))
-#     print(df_volume_proportion_exchange)
-#
-#     fig = px.area(df_volume_proportion_exchange, x="datetime", y="volumeUSD", color="asset", groupnorm='fraction')
-#     fig.update_layout(
-#         title=f"{i[0].upper()}{i[1:]} Spot Volume Proportion",
-#         xaxis_title="Datetime",
-#     )
-#     fig.show()
